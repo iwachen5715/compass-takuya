@@ -106,7 +106,7 @@ class StoreUserRequest extends FormRequest
         'role.in' => '選択された役割は無効です。',
         'password.required' => 'パスワードを入力してください。',
         'password.min' => 'パスワードは8文字以上で入力してください。',
-        'password.max' => 'パスワードは30文字以上で入力してください。',
+        'password.max' => 'パスワードは30文字以下で入力してください。',
         'password.confirmed' => 'パスワード確認が一致しません。',
 
         ];
