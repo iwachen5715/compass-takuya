@@ -14,30 +14,6 @@ use App\Searchs\SearchResultFactories;
 class UsersController extends Controller
 {
 
-    //  public function store(StoreUserRequest $request)
-    // {
-
-    //     // dd($request->all());
-    //     $validatedData = $request->validated();
-
-    //     // dd($validatedData);
-
-    //     // 新しいユーザーの作成
-    //     $user = User::create([
-    //         'over_name' => $validatedData['over_name'],
-    //         'under_name' => $validatedData['under_name'],
-    //         'over_name_kana' => $validatedData['over_name_kana'],
-    //         'under_name_kana' => $validatedData['under_name_kana'],
-    //         'mail_address' => $validatedData['mail_address'],
-    //         'sex' => $validatedData['sex'],
-    //         'birth_day' => $validatedData['birth_day'],
-    //         'role' => $validatedData['role'],
-    //         'password' => bcrypt($validatedData['password']),
-    //     ]);
-
-    //     // ユーザー登録後の処理
-    //     return response()->json($user, 201);
-    // }
 
     public function showUsers(Request $request){
         $keyword = $request->keyword;
