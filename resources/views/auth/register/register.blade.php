@@ -91,9 +91,10 @@
   <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
   <select class="old_year" name="old_year">
     <option value="none">-----</option>
-   @for ($year = 2000; $year <= now()->year; $year++)
+     @for ($year = 1985; $year <= 2010; $year++)
     <option value="{{ $year }}" {{ old('old_year') == $year ? 'selected' : '' }}>{{ $year }}</option>
-   @endfor
+@endfor
+
   </select>
   <label style="font-size:13px">年</label>
   <select class="old_month" name="old_month">
