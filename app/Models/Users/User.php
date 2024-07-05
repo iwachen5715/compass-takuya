@@ -82,9 +82,6 @@ class User extends Authenticatable
 
     // app/Models/User.php
 
-   public function isTeacher()
-   {
-    return in_array($this->role, [1, 2, 3]); // 1: 国語教師, 2: 数学教師, 3: 英語教師
-   }
+
 
 }
