@@ -1,4 +1,5 @@
 @extends('layouts.sidebar')
+
 @section('content')
 <div class="vh-100 d-flex">
   <div class="w-50 mt-5">
@@ -8,8 +9,19 @@
           <div>
           </div>
           <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            @if(Auth::id() == $post->user_id)
+              <!-- <button type="button" class="btn btn-primary edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</button>
+              <button type="button" class="btn btn-danger delete-modal-open" data-toggle="modal" data-target="#deleteModal" data-post_id="{{ $post->id }}">削除</button> -->
+
+             <span class="btn btn-primary edit-modal-open"
+                    post_title="{{ $post->post_title }}"
+                    post_body="{{ $post->post }}"
+                    post_id="{{ $post->id }}">編集</span>
+              <form action="{{ route('post.delete', ['id' => $post->id]) }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
+              </form>
+            @endif
           </div>
         </div>
 
@@ -23,6 +35,7 @@
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
+        </div>
       </div>
       <div class="p-3">
         <div class="comment_container">
@@ -52,6 +65,27 @@
     </div>
   </div>
 </div>
+<!-- 削除確認モーダル -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">削除確認</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        この投稿を削除してもよろしいですか？
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+        <button type="button" class="btn btn-danger" onclick="document.getElementById('deleteForm').submit()">削除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 編集モーダル -->
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">

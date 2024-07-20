@@ -40,6 +40,7 @@ class PostsController extends Controller
 
     public function postDetail($post_id){
         $post = Post::with('user', 'postComments')->findOrFail($post_id);
+        // $likes_count = $post->likes()->count();
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 
@@ -57,18 +58,52 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
 
+    // public function postEdit(Request $request){
+    //     Post::where('id', $request->post_id)->update([
+    //         'post_title' => $request->post_title,
+    //         'post' => $request->post_body,
+    //     ]);
+    //     return redirect()->route('post.detail', ['id' => $request->post_id]);
+    // }
+
     public function postEdit(Request $request){
-        Post::where('id', $request->post_id)->update([
-            'post_title' => $request->post_title,
-            'post' => $request->post_body,
+        $post = Post::findOrFail($request->post_id);
+
+        // 自分の投稿かどうかを確認
+        if ($post->user_id != Auth::id()) {
+            return redirect()->route('post.detail', ['id' => $request->post_id])->with('error', 'Unauthorized Access');
+        }
+
+        // バリデーション
+        $request->validate([
+            'post_title' => 'required|max:100',
+            'post_body' => 'required|max:5000',
         ]);
-        return redirect()->route('post.detail', ['id' => $request->post_id]);
+
+        // 投稿の更新
+        $post->update([
+            'post_title' => $request->post_title,
+            'post' => $request->post_body
+        ]);
+
+        return redirect()->route('post.detail', ['id' => $request->post_id])->with('success', 'Post updated successfully');
     }
 
+
     public function postDelete($id){
-        Post::findOrFail($id)->delete();
-        return redirect()->route('post.show');
+       $post = Post::findOrFail($id);
+
+        // 自分の投稿かどうかを確認
+        if ($post->user_id != Auth::id()) {
+            return redirect()->route('post.show')->with('error', 'Unauthorized Access');
+        }
+
+        // 投稿の削除
+        $post->delete();
+
+        return redirect()->route('post.show')->with('success', 'Post deleted successfully');
     }
+
     public function mainCategoryCreate(Request $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
@@ -108,6 +143,9 @@ class PostsController extends Controller
 
         return response()->json();
     }
+
+
+
 
     public function postUnLike(Request $request){
         $user_id = Auth::id();
