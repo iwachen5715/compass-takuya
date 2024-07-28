@@ -44,20 +44,25 @@
         @endif
       </div>
       <div>
-        @if($user->role == 4)
+       @if($user->role == 4)
         <span>選択科目 :</span>
+         <ul>
+            @foreach($user->subjects as $subject)
+              <li>{{ $subject->subject }}</li>
+            @endforeach
+          </ul>
         @endif
       </div>
     </div>
     @endforeach
   </div>
   <div class="search_area w-25 border">
-    <div class="">
+    <div>
       <div>
         <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
       </div>
       <div>
-        <lavel>カテゴリ</lavel>
+        <label>カテゴリ</label>
         <select form="userSearchRequest" name="category">
           <option value="name">名前</option>
           <option value="id">社員ID</option>
@@ -70,7 +75,7 @@
           <option value="DESC">降順</option>
         </select>
       </div>
-      <div class="">
+      <div>
         <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
         <div class="search_conditions_inner">
           <div>
@@ -86,11 +91,19 @@
               <option value="1">教師(国語)</option>
               <option value="2">教師(数学)</option>
               <option value="3">教師(英語)</option>
-              <option value="4" class="">生徒</option>
+              <option value="4">生徒</option>
             </select>
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <div>
+              @foreach($subjects as $subject)
+                <label>
+                  <input type="checkbox" name="subjects[]" value="{{ $subject->id }}" form="userSearchRequest">
+                  {{ $subject->subject}}
+                </label>
+              @endforeach
+            </div>
           </div>
         </div>
       </div>

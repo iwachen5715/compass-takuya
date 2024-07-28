@@ -55,16 +55,15 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+
+
+
+
+
         return redirect()->route('post.show');
     }
 
-    // public function postEdit(Request $request){
-    //     Post::where('id', $request->post_id)->update([
-    //         'post_title' => $request->post_title,
-    //         'post' => $request->post_body,
-    //     ]);
-    //     return redirect()->route('post.detail', ['id' => $request->post_id]);
-    // }
+
 
     public function postEdit(Request $request){
         $post = Post::findOrFail($request->post_id);
@@ -108,6 +107,15 @@ class PostsController extends Controller
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
+
+     public function subCategoryCreate(Request $request){
+        // dd($request);
+        SubCategory::create([
+            'main_category_id' => $request->main_category_id,
+            'sub_category'     => $request->sub_category_name,
+        ]);
+        return redirect()->route('post.input');
+     }
 
     public function commentCreate(Request $request){
         PostComment::create([
