@@ -23,21 +23,16 @@ class SelectIdDetails implements DisplayUsers{
       $role = array($role);
     }
 
-    $query = User::with('subjects')
+     $query = User::with('subjects')
       ->whereIn('id', $keyword)
-      ->where(function($q) use ($role, $gender){
+      ->where(function ($q) use ($role, $gender) {
         $q->whereIn('sex', $gender)
           ->whereIn('role', $role);
       });
 
-    if(!is_null($subjects)){
-      // dd($subjects);
-      $query->where(function($q) use ($subjects){
-        foreach ($subjects as $subject) {
-          $q->orWhereHas('subjects', function($q) use ($subject){
-            $q->where('subjects.id', $subject);
-          });
-        }
+    if (!is_null($subjects)) {
+      $query->whereHas('subjects', function ($q) use ($subjects) {
+        $q->whereIn('subjects.id', $subjects);
       });
     }
 

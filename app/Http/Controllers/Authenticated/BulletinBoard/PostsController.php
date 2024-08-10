@@ -17,18 +17,30 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
-        $like = new Like;
-        $post_comment = new Post;
+       $categories = MainCategory::with('subCategories')->get();
+       $like = new Like;
+       $post_comment = new Post;
+       $query = Post::with('user', 'postComments', 'subCategories');
+
+
+
         if(!empty($request->keyword)){
-            $posts = Post::with('user', 'postComments', 'subCategory.mainCategory')
-            ->whereHas('subCategory', function($query) use ($request) {
-                    $query->where('sub_category', $request->keyword);
-                })
-                ->get();
+            $keyword =$request->keyword;
+            $posts = Post::with('user', 'postComments', 'subCategories')
+
+            ->where('post_title', 'like', '%'.$request->keyword.'%')
+            ->orWhere('post', 'like', '%'.$request->keyword.'%')
+            ->orWhereHas('subCategories', function ($query) use ($keyword) {
+            $query->where('sub_category', $keyword); // サブカテゴリーの完全一致検索
+        })->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            // dd($sub_category);
+            $posts = Post::with('user', 'postComments')->
+            whereHas('subCategories', function ($query) use ($sub_category) {
+                $query->where('sub_category', $sub_category);
+            })->get();
+            // ->where
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -37,6 +49,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
+
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
@@ -52,12 +65,16 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
+        // dd($request);
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        // dd($post);
 
+         // 中間テーブルにサブカテゴリーを保存
+        $post->subCategories()->attach($request->post_category_id);
 
 
 

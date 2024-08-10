@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\Posts;
+use App\Models\Categories\SubCategory;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,4 +50,9 @@ class Post extends Model
     {
         return $this->likes()->count();
     }
+
+    //  public function subCategory()
+    // {
+    //     return $this->belongsToMany(SubCategory::class, 'sub_category_id');
+    // }
 }

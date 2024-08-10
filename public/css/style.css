@@ -52,7 +52,7 @@ li {
 }
 
 .past-day {
-  background: #EEE;
+  background: #6c757d4f;
 }
 
 .calendar-td {
@@ -231,6 +231,15 @@ li {
   color: #FFF;
 }
 
+.sub_category_btn {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0 5px;
+  border: none;
+  background: #999;
+  color: #FFF;
+}
+
 .main_categories span,
 .sub_categories li input {
   list-style: none;
@@ -305,4 +314,11 @@ li {
   /* リストアイテムのマーカーをディスクに設定 */
 
   /* リストアイテムの左マージン */
+}
+
+
+.d-flex {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  justify-content: flex-end;
 }
