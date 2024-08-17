@@ -40,7 +40,7 @@ li {
 
 /* スクール予約関連 */
 .day-blank {
-  background: #D3D3D3;
+  background: #6c757d7a;
 }
 
 .day-sat {
@@ -53,10 +53,14 @@ li {
 
 .past-day {
   background: #6c757d4f;
+  overflow: hidden;
 }
 
 .calendar-td {
   min-width: 100px;
+  position: relative;
+  padding: 5px;
+  vertical-align: top;
 }
 
 .day_part {

@@ -16,6 +16,7 @@ use Auth;
 class PostsController extends Controller
 {
     public function show(Request $request){
+        // dd($request->keyword);
         $posts = Post::with('user', 'postComments')->get();
        $categories = MainCategory::with('subCategories')->get();
        $like = new Like;

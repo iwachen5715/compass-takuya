@@ -1,11 +1,12 @@
 <?php
-namespace App\Calendars\Admin;
+namespace App\Calendars\General;
+
 use Carbon\Carbon;
-use App\Models\Users\User;
+use Auth;
 
 class CalendarView{
-  private $carbon;
 
+  private $carbon;
   function __construct($date){
     $this->carbon = new Carbon($date);
   }
@@ -14,48 +15,53 @@ class CalendarView{
     return $this->carbon->format('Y年n月');
   }
 
-  public function render(){
-    $html = [];
-    $html[] = '<div class="calendar text-center">';
-    $html[] = '<table class="table m-auto border">';
-    $html[] = '<thead>';
-    $html[] = '<tr>';
-    $html[] = '<th class="border">月</th>';
-    $html[] = '<th class="border">火</th>';
-    $html[] = '<th class="border">水</th>';
-    $html[] = '<th class="border">木</th>';
-    $html[] = '<th class="border">金</th>';
-    $html[] = '<th class="border">土</th>';
-    $html[] = '<th class="border">日</th>';
-    $html[] = '</tr>';
-    $html[] = '</thead>';
-    $html[] = '<tbody>';
+ function render(){
+  $html = [];
+  $html[] = '<div class="calendar text-center">';
+  $html[] = '<table class="table">';
+  $html[] = '<thead>';
+  $html[] = '<tr>';
+  $html[] = '<th>月</th>';
+  $html[] = '<th>火</th>';
+  $html[] = '<th>水</th>';
+  $html[] = '<th>木</th>';
+  $html[] = '<th>金</th>';
+  $html[] = '<th>土</th>';
+  $html[] = '<th>日</th>';
+  $html[] = '</tr>';
+  $html[] = '</thead>';
+  $html[] = '<tbody>';
+  $weeks = $this->getWeeks();
+  foreach($weeks as $week){
+    $html[] = '<tr class="'.$week->getClassName().'">';
+    $days = $week->getDays();
+    foreach($days as $day){
+      $date = $day->everyDay();
+      $today = Carbon::now()->format("Y-m-d");
+      $past = $date < $today; // 過去日かどうかをチェック
 
-    $weeks = $this->getWeeks();
+      $backgroundClass = $past ? 'past-day' : '';
+      $statusText = $past
+        ? ($this->getReservationStatus($date)['isReserved'] ? $this->formatReservationStatus($this->getReservationStatus($date)['parts']) : '<p class="m-0">受付終了</p>')
+        : $day->selectPart($date);
 
-    foreach($weeks as $week){
-      $html[] = '<tr class="'.$week->getClassName().'">';
-      $days = $week->getDays();
-      foreach($days as $day){
-        $startDay = $this->carbon->format("Y-m-01");
-        $toDay = $this->carbon->format("Y-m-d");
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-day border">';
-        }else{
-          $html[] = '<td class="border '.$day->getClassName().'">';
-        }
-        $html[] = $day->render();
-        $html[] = $day->dayPartCounts($day->everyDay());
-        $html[] = '</td>';
-      }
-      $html[] = '</tr>';
+      $html[] = '<td class="' . $backgroundClass . ' calendar-td ' . $day->getClassName() . '">';
+      $html[] = $day->render();
+      $html[] = $statusText;
+      $html[] = $day->getDate();
+      $html[] = '</td>';
     }
-    $html[] = '</tbody>';
-    $html[] = '</table>';
-    $html[] = '</div>';
-
-    return implode("", $html);
+    $html[] = '</tr>';
   }
+  $html[] = '</tbody>';
+  $html[] = '</table>';
+  $html[] = '</div>';
+  $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
+  $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
+
+  return implode('', $html);
+}
+
 
   protected function getWeeks(){
     $weeks = [];
