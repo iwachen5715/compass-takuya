@@ -63,16 +63,21 @@ class CalendarView{
                     if ($isPast) {
                         // 過去日で予約している場合
                         $statusText = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '</p>';
+                        $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     } else {
                         // 未来日で予約している場合
-                        $statusText = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
+                        $statusText = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" part="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
+                          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+
                     }
                 } else {
                     // 予約していない場合
                     if ($isPast) {
                         $statusText = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+                          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     } else {
                         $statusText = $day->selectPart($date);
+                          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     }
                 }
             }
@@ -81,6 +86,7 @@ class CalendarView{
             $html[] = $day->render();
             $html[] = $statusText;
             $html[] = $day->getDate();
+
             $html[] = '</td>';
         }
         $html[] = '</tr>';
@@ -88,6 +94,8 @@ class CalendarView{
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
+    $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
+    $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
 
     return implode("", $html);
 }
@@ -108,4 +116,8 @@ class CalendarView{
     }
     return $weeks;
   }
+
+
+
+
 }

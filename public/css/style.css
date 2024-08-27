@@ -36,7 +36,10 @@ li {
 .user_status {
   border-radius: 10px;
   background: #FFF;
+  /* 立体感を出すためのシャドウ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 /* スクール予約関連 */
 .day-blank {
@@ -83,6 +86,30 @@ li {
 .adjust-table-btn {
   width: 70%;
 }
+
+.text-decoration-none {
+  display: flex;
+  flex-flow: column;
+}
+
+.part-info {
+  display: flex;
+  /* 横並びにするための設定 */
+  align-items: center;
+  /* 縦方向に中央揃え */
+  margin-bottom: 5px;
+  /* 各部数の間隔を調整 */
+}
+
+.part-info a {
+  margin-right: 10px;
+  /* 部数と人数の間隔を調整 */
+  text-decoration: none;
+  /* リンクの下線を削除 */
+}
+
+
+
 
 /* モーダル */
 .modal {

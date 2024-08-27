@@ -19,10 +19,32 @@ class CalendarsController extends Controller
         return view('authenticated.calendar.admin.calendar', compact('calendar'));
     }
 
-    public function reserveDetail($date, $part){
-        $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
-        return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
+   public function reserveDetail($date, $part){
+    $reservations = ReserveSettings::with('users')
+        ->where('setting_reserve', $date)
+        ->where('setting_part', $part)
+        ->get();
+
+    // データがない場合の処理
+    if ($reservations->isEmpty() || $reservations->first()->users()->doesntExist())  {
+        // dd($reservations);
+
+        return view('authenticated.calendar.admin.reserve_detail', [
+            'date' => $date,
+            'part' => $part,
+            'message' => '予約がありません'
+        ]);
+
     }
+    //  dd($reservations);
+
+    // データがある場合の処理
+    return view('authenticated.calendar.admin.reserve_detail', [
+        'date' => $date,
+        'part' => $part,
+        'reservations' => $reservations,
+    ]);
+}
 
     public function reserveSettings(){
         $calendar = new CalendarSettingView(time());
