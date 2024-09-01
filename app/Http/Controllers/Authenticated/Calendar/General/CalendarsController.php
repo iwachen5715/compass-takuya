@@ -19,13 +19,14 @@ class CalendarsController extends Controller
     }
 
     public function reserve(Request $request){
+        // dd($request);
+
         DB::beginTransaction();
         try{
             $getPart = $request->getPart;
             $getDate = $request->getData;
-            dd($getPart);
-
             $reserveDays = array_filter(array_combine($getDate, $getPart));
+
             foreach($reserveDays as $key => $value){
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
                 $reserve_settings->decrement('limit_users');
@@ -37,4 +38,34 @@ class CalendarsController extends Controller
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
+
+       public function delete(Request $request)
+    {
+        // バリデーション（予約IDが必要）
+        $request->validate([
+            'reservation_id' => 'required|exists:reservations,id', // reservationsテーブルに存在するIDか確認
+        ]);
+
+        // 予約IDの取得
+        $reservationId = $request->input('reservation_id');
+
+        try {
+            // 予約を取得
+            $reservation = Reservation::findOrFail($reservationId);
+
+            // 予約の削除
+            $reservation->delete();
+
+            // キャンセル完了メッセージを設定
+            return redirect()->back()->with('success', '予約をキャンセルしました。');
+        } catch (\Exception $e) {
+            // エラーメッセージを設定
+            return redirect()->back()->with('error', '予約のキャンセルに失敗しました。');
+        }
+    }
+
+
+
+
+
 }

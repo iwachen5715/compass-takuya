@@ -137,6 +137,7 @@ li {
   width: 60%;
 }
 
+
 /* 掲示板 */
 .sub_categories {
   display: none;
@@ -297,6 +298,7 @@ li {
 .one_person {
   width: 250px;
   height: 250px;
+  margin-bottom: 15px;
 }
 
 .search_conditions span {

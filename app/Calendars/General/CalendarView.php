@@ -66,7 +66,7 @@ class CalendarView{
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     } else {
                         // 未来日で予約している場合
-                        $statusText = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" part="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
+                        $statusText = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" part="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
                           $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
                     }
@@ -77,7 +77,6 @@ class CalendarView{
                           $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     } else {
                         $statusText = $day->selectPart($date);
-                          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     }
                 }
             }
@@ -86,7 +85,6 @@ class CalendarView{
             $html[] = $day->render();
             $html[] = $statusText;
             $html[] = $day->getDate();
-
             $html[] = '</td>';
         }
         $html[] = '</tr>';

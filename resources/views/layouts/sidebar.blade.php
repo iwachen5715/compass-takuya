@@ -19,7 +19,12 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
+      <p>
+  <a href="{{ route('top.show') }}">
+    <img src="/images/i_icon_11211_icon_112110_64.png" alt="トップアイコン" style="vertical-align: middle; margin-right: 5px;">
+    トップ
+  </a>
+</p>
       <p><a href="/logout">ログアウト</a></p>
       <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
       @if (in_array(Auth::user()->role, [1, 2, 3]))

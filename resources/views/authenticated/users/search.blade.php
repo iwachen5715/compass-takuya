@@ -44,14 +44,14 @@
         @endif
       </div>
       <div>
-       @if($user->role == 4)
-        <span>選択科目 :</span>
-         <ul>
-            @foreach($user->subjects as $subject)
-              <li>{{ $subject->subject }}</li>
-            @endforeach
-          </ul>
-        @endif
+      @if($user->role == 4)
+    <span>選択科目 :</span>
+    <ul style="display: inline-block; margin: 0; padding-left: 10px; font-size:12px">
+        @foreach($user->subjects as $subject)
+            <li style="display: inline; list-style: none; margin-right: 10px;">{{ $subject->subject }}</li>
+        @endforeach
+    </ul>
+@endif
       </div>
     </div>
     @endforeach

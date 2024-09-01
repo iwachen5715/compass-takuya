@@ -50,7 +50,7 @@ class CalendarWeekDay{
 
      $html = [];
     //  $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
-     $html[] = '<select name="getPart['.$ymd.'][]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
+     $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
      $html[] = '<option value="" selected></option>';
      if($one_part_frame == "0"){
        $html[] = '<option value="1" disabled>リモ1部(残り0枠)</option>';
@@ -72,8 +72,8 @@ class CalendarWeekDay{
    }
 
    function getDate(){
-    //  return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getData[]" form="reserveParts">';
-     return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getData['.$this->carbon->format('Y-m-d').'][]" form="reserveParts">';
+     return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getData[]" form="reserveParts">';
+    //  return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getData['.$this->carbon->format('Y-m-d').'][]" form="reserveParts">';
    }
 
    function everyDay(){
