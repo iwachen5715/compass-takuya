@@ -65,8 +65,8 @@ class CalendarView{
                         $statusText = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '</p>';
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     } else {
-                        // 未来日で予約している場合
-                        $statusText = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" part="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
+                        // 未来日で予約している場合 カレンダーjsの発火ボタン
+                        $statusText = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px"  data-part="' . $reservation->part . '" data-date="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
                           $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
                     }
