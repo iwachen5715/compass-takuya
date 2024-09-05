@@ -39,8 +39,10 @@ class CalendarsController extends Controller
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
 
-       public function delete(Request $request)
+     public function delete(Request $request)
+
     {
+        //  dd($request);
         // バリデーション（予約IDが必要）
         $request->validate([
             'reservation_id' => 'required|exists:reservations,id', // reservationsテーブルに存在するIDか確認
@@ -49,21 +51,30 @@ class CalendarsController extends Controller
         // 予約IDの取得
         $reservationId = $request->input('reservation_id');
 
+        DB::beginTransaction();
         try {
             // 予約を取得
             $reservation = Reservation::findOrFail($reservationId);
 
+            // 予約設定を取得
+            $reserve_setting = ReserveSettings::findOrFail($reservation->reserve_setting_id);
+
+            // `limit_users`のインクリメント
+            $reserve_setting->increment('limit_users');//incrementメソッドは、指定したカラムの値を1だけ増やします。'limit_users'は、インクリメントするカラム名です。この場合、ReserveSettingsテーブルにあるlimit_usersというカラムの値が1増えます。
+
             // 予約の削除
             $reservation->delete();
+
+            DB::commit();
 
             // キャンセル完了メッセージを設定
             return redirect()->back()->with('success', '予約をキャンセルしました。');
         } catch (\Exception $e) {
+            DB::rollback();
             // エラーメッセージを設定
             return redirect()->back()->with('error', '予約のキャンセルに失敗しました。');
         }
     }
-
 
 
 

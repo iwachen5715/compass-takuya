@@ -66,7 +66,12 @@ class CalendarView{
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     } else {
                         // 未来日で予約している場合 カレンダーjsの発火ボタン
-                        $statusText = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px"  data-part="' . $reservation->part . '" data-date="' . $reservation->setting_reserve . '">' . $reservePart . '</button>';
+                        $formattedPart = 'リモ' . $reservation->setting_part . '部';
+                        $statusText = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px"
+                        data-time="' . $formattedPart . '"
+                        data-date="' . $reservation->setting_reserve . '"
+                        data-id="' . $reservation->id . '">'   // ここが正しい予約IDになっているか確認
+                        . $reservePart . '</button>';
                           $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
                     }
