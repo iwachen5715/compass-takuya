@@ -30,7 +30,7 @@
         @endif
       </div>
       <div>
-        <span>生年月日 : </span><span>{{ $user->birth_day }}</span>
+        <span >生年月日 : </span><span>{{ $user->birth_day }}</span>
       </div>
       <div>
         @if($user->role == 1)

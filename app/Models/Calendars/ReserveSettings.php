@@ -9,6 +9,8 @@ class ReserveSettings extends Model
     const UPDATED_AT = null;
     public $timestamps = false;
 
+     protected $table = 'reserve_settings';
+
     protected $fillable = [
         'setting_reserve',
         'setting_part',

@@ -17,14 +17,20 @@ li {
 }
 
 .w-25 {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  /* border-radius: 20px; */
 }
+
+/* .w-100 p {
+  text-align: center;
+  font-size: 20px;
+} */
 
 /* サイドバー */
 .sidebar {
   width: 150px;
-  min-height: 100vh;
+  min-height: 500vh;
   background-color: #03AAD2;
   font-weight: bold;
 }
@@ -52,11 +58,11 @@ li {
 }
 
 .day-sat {
-  color: #0000FF;
+  color: #212529;
 }
 
 .day-sun {
-  color: #FF0000;
+  color: #212529;
 }
 
 .past-day {
@@ -283,6 +289,10 @@ li {
   cursor: pointer;
 }
 
+.btn-primary {
+  margin-top: 15px;
+}
+
 /* ユーザー検索 */
 .reserve_users_area {
   display: flex;
@@ -301,9 +311,12 @@ li {
 }
 
 .one_person {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 15px;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
 }
 
 .search_conditions span {
