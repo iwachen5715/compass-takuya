@@ -7,45 +7,45 @@
     @foreach($users as $user)
     <div class="border one_person">
       <div>
-        <span>ID : </span><span>{{ $user->id }}</span>
+        <span class="name-Icon">ID : </span><span>{{ $user->id }}</span>
       </div>
-      <div><span>名前 : </span>
+      <div><span class="name-Icon">名前 : </span>
         <a href="{{ route('user.profile', ['id' => $user->id]) }}">
           <span>{{ $user->over_name }}</span>
           <span>{{ $user->under_name }}</span>
         </a>
       </div>
       <div>
-        <span>カナ : </span>
+        <span class="name-Icon">カナ : </span>
         <span>({{ $user->over_name_kana }}</span>
         <span>{{ $user->under_name_kana }})</span>
       </div>
       <div>
         @if($user->sex == 1)
-        <span>性別 : </span><span>男</span>
+        <span class="name-Icon">性別 : </span><span>男</span>
         @elseif($user->sex == 2)
-        <span>性別 : </span><span>女</span>
+        <span class="name-Icon">性別 : </span><span>女</span>
         @else
-        <span>性別 : </span><span>その他</span>
+        <span class="name-Icon">性別 : </span><span>その他</span>
         @endif
       </div>
       <div>
-        <span >生年月日 : </span><span>{{ $user->birth_day }}</span>
+        <span class="name-Icon" >生年月日 : </span><span>{{ $user->birth_day }}</span>
       </div>
       <div>
         @if($user->role == 1)
-        <span>権限 : </span><span>教師(国語)</span>
+        <span class="name-Icon">役職 : </span><span>教師(国語)</span>
         @elseif($user->role == 2)
-        <span>権限 : </span><span>教師(数学)</span>
+        <span class="name-Icon">役職 : </span><span>教師(数学)</span>
         @elseif($user->role == 3)
-        <span>権限 : </span><span>講師(英語)</span>
+        <span class="name-Icon">役職 : </span><span>講師(英語)</span>
         @else
-        <span>権限 : </span><span>生徒</span>
+        <span class="name-Icon">役職 : </span><span>生徒</span>
         @endif
       </div>
       <div>
       @if($user->role == 4)
-    <span>選択科目 :</span>
+    <span class="name-Icon">選択科目 :</span>
     <ul style="display: inline-block; margin: 0; padding-left: 10px; font-size:12px">
         @foreach($user->subjects as $subject)
             <li style="display: inline; list-style: none; margin-right: 10px;">{{ $subject->subject }}</li>

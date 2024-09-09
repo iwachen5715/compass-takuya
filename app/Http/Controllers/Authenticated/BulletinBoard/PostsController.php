@@ -86,6 +86,21 @@ class PostsController extends Controller
 
 
     public function postEdit(Request $request){
+
+        $request->validate(
+        [
+            'post_title' => 'required|string|max:100',
+            'post_body' => 'required|string|max:5000',
+        ],
+        [
+            'post_title.required' => 'タイトルは必須項目です。',
+            'post_title.string' => 'タイトルは文字列で入力してください。',
+            'post_title.max' => 'タイトルは100文字以内で入力してください。',
+            'post_body.required' => '本文は必須項目です。',
+            'post_body.string' => '本文は文字列で入力してください。',
+            'post_body.max' => '本文は5000文字以内で入力してください。',
+        ]
+    );
         $post = Post::findOrFail($request->post_id);
 
         // 自分の投稿かどうかを確認
@@ -93,19 +108,13 @@ class PostsController extends Controller
             return redirect()->route('post.detail', ['id' => $request->post_id])->with('error', 'Unauthorized Access');
         }
 
-        // バリデーション
-        $request->validate([
-            'post_title' => 'required|max:100',
-            'post_body' => 'required|max:5000',
-        ]);
-
         // 投稿の更新
         $post->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
 
-        return redirect()->route('post.detail', ['id' => $request->post_id])->with('success', 'Post updated successfully');
+        return redirect()->route('post.detail', ['id' => $post->id]);
     }
 
 
@@ -138,6 +147,18 @@ class PostsController extends Controller
      }
 
     public function commentCreate(Request $request){
+         // バリデーションルールの追加
+        $request->validate(
+        [
+            'comment' => 'required|string|max:250',
+        ],
+        [
+            'comment.required' => 'コメントは必須項目です。',
+            'comment.string' => 'コメントは文字列で入力してください。',
+            'comment.max' => 'コメントは250文字以内で入力してください。',
+        ]
+    );
+
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),

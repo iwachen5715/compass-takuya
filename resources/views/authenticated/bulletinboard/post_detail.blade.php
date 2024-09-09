@@ -53,9 +53,20 @@
       </div>
     </div>
   </div>
+ <!-- コメント投稿部分 -->
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
+        <!-- エラーメッセージの表示 -->
+        @if ($errors->has('comment'))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->get('comment') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <p class="m-0">コメントする</p>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
@@ -91,6 +102,16 @@
   <div class="modal__content">
     <form action="{{ route('post.edit') }}" method="post">
       <div class="w-100">
+          <!-- エラーメッセージの表示 -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="modal-inner-title w-50 m-auto">
           <input type="text" name="post_title" placeholder="タイトル" class="w-100">
         </div>

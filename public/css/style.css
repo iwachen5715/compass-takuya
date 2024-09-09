@@ -251,6 +251,12 @@ li {
   font-size: 12px;
 }
 
+.fa-comment:before {
+  color: #9E9E9E;
+}
+
+.fa-heart.like_btn::before {}
+
 /* 掲示板　カテゴリー */
 .category_area {
   background: #FFF;
@@ -297,13 +303,21 @@ li {
 .reserve_users_area {
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
-  margin: 10px auto;
-  height: 80vh;
+  justify-content: space-between;
+  /* 子要素を均等に配置 */
+  gap: 10px;
+  /* 要素間の隙間 */
+  width: 100%;
+  /* 親幅に合わせる */
   overflow: scroll;
   padding: 10px;
-  background: #FFF;
+  background: #f9f5f5;
   border-radius: 5px;
+
+}
+
+.name-Icon {
+  color: #999;
 }
 
 .reserve_users_area span {
@@ -311,10 +325,14 @@ li {
 }
 
 .one_person {
-  width: 200px;
+  flex: 1 1 calc(25% - 20px);
+  /* 横4列にするための幅計算 */
+  max-width: calc(25% - 20px);
+  /* 幅の最大値を指定 */
   height: 200px;
-  margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  /* 縦方向の隙間 */
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 
 }
@@ -329,9 +347,10 @@ li {
 }
 
 .subject_edit_btn {
-  font-size: 12px;
-  color: #0000FF;
+  font-size: 16px;
+  color: #0ec2de;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .subject_inner {

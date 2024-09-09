@@ -21,18 +21,49 @@
       @section('sidebar')
       <p>
   <a href="{{ route('top.show') }}">
-    <img src="/images/i_icon_11211_icon_112110_64.png" alt="トップアイコン" style="vertical-align: middle; margin-right: 5px;">
-    トップ
+     <img src="{{ asset('image/_i_icon_11212_icon_112122_16.png') }}" alt="マイページ" style="vertical-align: middle; margin-right: 5px; margin-bottom:4px">
+    マイページ
+</a>
+
   </a>
 </p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <p>
+        <a href="/logout">
+        <img src="{{ asset('image/_i_icon_11214_icon_112142_16.png') }}" alt="ログアウト" style="vertical-align: middle; margin-right: 5px;">
+        ログアウト
+    </a>
+    <p>
+     <a href="{{ route('calendar.general.show', ['user_id' => Auth::id()]) }}">
+        <img src="{{ asset('image/_i_icon_12549_icon_125492_16.png') }}" alt="スクール予約" style="vertical-align: middle; margin-right: 5px;">
+        スクール予約
+    </a>
+    </p>
+
       @if (in_array(Auth::user()->role, [1, 2, 3]))
-        <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-        <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
-      @endif
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+    <p>
+    <a href="{{ route('calendar.admin.show', ['user_id' => Auth::id()]) }}" style="white-space: nowrap;">
+        <img src="{{ asset('image/_i_icon_12555_icon_125552_16.png') }}" alt="スクール予約確認" style="vertical-align: middle; margin-right: 5px;">
+        スクール予約確認
+    </a>
+    </p>
+       <p>
+    <a href="{{ route('calendar.admin.setting', ['user_id' => Auth::id()]) }}" style="white-space: nowrap;">
+        <img src="{{ asset('image/_i_icon_12565_icon_125652_16.png') }}" alt="スクール枠登録" style="vertical-align: middle; margin-right: 5px;">
+        スクール枠登録
+    </a>
+    </p>
+      @endif<p>
+    <a href="{{ route('post.show') }}" style="white-space: nowrap;">
+        <img src="{{ asset('image/_i_icon_00123_icon_001232_16.png') }}" alt="掲示板" style="vertical-align: middle; margin-right: 5px;">
+        掲示板
+    </a>
+    </p>
+    <p>
+    <a href="{{ route('user.show') }}" style="white-space: nowrap;">
+        <img src="{{ asset('image/_i_icon_11186_icon_111862_16.png') }}" alt="ユーザー検索" style="vertical-align: middle; margin-right: 5px;">
+        ユーザー検索
+    </a>
+    </p>
       @show
     </div>
     <div class="main-container">
