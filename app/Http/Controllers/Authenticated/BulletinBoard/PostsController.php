@@ -10,6 +10,7 @@ use App\Models\Posts\Post;
 use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Auth;
 
@@ -93,10 +94,10 @@ class PostsController extends Controller
             'post_body' => 'required|string|max:5000',
         ],
         [
-            'post_title.required' => 'タイトルは必須項目です。',
+            'post_title.required' => 'タイトルは必ず入力してください。',
             'post_title.string' => 'タイトルは文字列で入力してください。',
             'post_title.max' => 'タイトルは100文字以内で入力してください。',
-            'post_body.required' => '本文は必須項目です。',
+            'post_body.required' => '本文は必ず入力してください。',
             'post_body.string' => '本文は文字列で入力してください。',
             'post_body.max' => '本文は5000文字以内で入力してください。',
         ]
@@ -133,11 +134,51 @@ class PostsController extends Controller
     }
 
     public function mainCategoryCreate(Request $request){
+         // バリデーションの定義
+    $request->validate(
+        [
+            'main_category_name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('main_categories', 'main_category') // 同じ名前のメインカテゴリーが登録されないようにする
+            ]
+        ],
+        [
+            'main_category_name.required' => 'メインカテゴリー名は必ず入力してください。',
+            'main_category_name.string' => 'メインカテゴリー名は文字列で入力してください。',
+            'main_category_name.max' => 'メインカテゴリー名は100文字以内で入力してください。',
+            'main_category_name.unique' => 'このメインカテゴリー名は既に登録されています。'
+        ]
+    );
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
 
      public function subCategoryCreate(Request $request){
+         // バリデーションの定義
+    $request->validate(
+        [
+            'main_category_id' => [
+                'required',
+                'exists:main_categories,id' // 登録されているメインカテゴリーかどうかを確認
+            ],
+            'sub_category_name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('sub_categories', 'sub_category') // 同じ名前のサブカテゴリーが登録されないようにする
+            ]
+        ],
+        [
+            'main_category_id.required' => 'メインカテゴリーを選択してください。',
+            'main_category_id.exists' => '選択したメインカテゴリーは存在しません。',
+            'sub_category_name.required' => 'サブカテゴリー名は必ず入力してください。',
+            'sub_category_name.string' => 'サブカテゴリー名は文字列で入力してください。',
+            'sub_category_name.max' => 'サブカテゴリー名は100文字以内で入力してください。',
+            'sub_category_name.unique' => 'このサブカテゴリー名は既に登録されています。'
+        ]
+    );
         // dd($request);
         SubCategory::create([
             'main_category_id' => $request->main_category_id,
@@ -153,7 +194,7 @@ class PostsController extends Controller
             'comment' => 'required|string|max:250',
         ],
         [
-            'comment.required' => 'コメントは必須項目です。',
+            'comment.required' => 'コメントは必ず入力してください',
             'comment.string' => 'コメントは文字列で入力してください。',
             'comment.max' => 'コメントは250文字以内で入力してください。',
         ]

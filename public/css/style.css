@@ -257,6 +257,10 @@ li {
 
 .fa-heart.like_btn::before {}
 
+.text-danger {
+  white-space: nowrap;
+}
+
 /* 掲示板　カテゴリー */
 .category_area {
   background: #FFF;
