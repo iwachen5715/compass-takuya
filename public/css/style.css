@@ -16,20 +16,28 @@ li {
   list-style: none;
 }
 
-.w-25 {
-
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
-  /* border-radius: 20px; */
+.border {
+  background-color: #FFF;
+  /* border-radius: 10px; */
 }
 
-/* .w-100 p {
-  text-align: center;
-  font-size: 20px;
-} */
+.border-O {
+  background-color: #fff;
+}
+
+
+
+/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+/* border-radius: 20px; */
+
+
+.w-100 {
+  /* background-color: #ecf1f5; */
+}
 
 /* サイドバー */
 .sidebar {
-  width: 150px;
+  width: 180px;
   min-height: 500vh;
   background-color: #03AAD2;
   font-weight: bold;
@@ -38,6 +46,8 @@ li {
 .main-container {
   width: 100%;
 }
+
+
 
 .sidebar p a {
   color: #FFF;
@@ -66,7 +76,7 @@ li {
 }
 
 .past-day {
-  background: #6c757d4f;
+  background: #ddd;
   overflow: hidden;
 }
 
@@ -118,6 +128,7 @@ li {
   text-decoration: none;
   /* リンクの下線を削除 */
 }
+
 
 
 
@@ -216,6 +227,7 @@ li {
 
 .edit-modal-open {
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
 .modal-inner-body textarea {
@@ -267,6 +279,7 @@ li {
   border-radius: 10px;
 }
 
+
 .category_box {
   border-radius: 5px;
   padding: 3px;
@@ -315,7 +328,7 @@ li {
   /* 親幅に合わせる */
   overflow: scroll;
   padding: 10px;
-  background: #f9f5f5;
+  background: #ecf1f5;
   border-radius: 5px;
 
 }
@@ -338,6 +351,7 @@ li {
   /* 縦方向の隙間 */
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  background-color: #fff;
 
 }
 
@@ -374,7 +388,20 @@ li {
   /* オーバーフローを隠す */
   word-wrap: break-word;
   /* 長い単語を折り返す */
+  border: none;
+  /* 赤枠を消すためにボーダーをなしに設定 */
+  background-color: transparent;
+  /* 背景色を透明に設定 */
+  border-color: transparent;
+  /* ボーダーの色を透明に設定 */
 }
+
+.alert-time {
+  color: #e71125;
+
+}
+
+
 
 .alert-danger ul {
 

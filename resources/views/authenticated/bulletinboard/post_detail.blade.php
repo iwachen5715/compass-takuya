@@ -2,18 +2,30 @@
 
 @section('content')
 <div class="vh-100 d-flex">
+
+  <!-- 投稿詳細とコメント一覧 -->
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
+
       <div class="p-3">
+         @if ($errors->has('post_title') || $errors->has('post_body'))
+    <div class="alert alert-time">
+        <ul>
+            @if ($errors->has('post_title'))
+                <li>{{ $errors->first('post_title') }}</li>
+            @endif
+            @if ($errors->has('post_body'))
+                <li>{{ $errors->first('post_body') }}</li>
+            @endif
+        </ul>
+    </div>
+@endif
         <div class="detail_inner_head">
           <div>
           </div>
           <div>
             @if(Auth::id() == $post->user_id)
-              <!-- <button type="button" class="btn btn-primary edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</button>
-              <button type="button" class="btn btn-danger delete-modal-open" data-toggle="modal" data-target="#deleteModal" data-post_id="{{ $post->id }}">削除</button> -->
-
-             <span class="btn btn-primary edit-modal-open"
+              <span class="btn btn-primary edit-modal-open"
                     post_title="{{ $post->post_title }}"
                     post_body="{{ $post->post }}"
                     post_id="{{ $post->id }}">編集</span>
@@ -24,7 +36,6 @@
             @endif
           </div>
         </div>
-
         <div class="contributor d-flex">
           <p>
             <span>{{ $post->user->over_name }}</span>
@@ -35,47 +46,51 @@
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
-        </div>
-      </div>
-      <div class="p-3">
-        <div class="comment_container">
-          <span class="">コメント</span>
-          @foreach($post->postComments as $comment)
-          <div class="comment_area border-top">
-            <p>
-              <span>{{ $comment->commentUser($comment->user_id)->over_name }}</span>
-              <span>{{ $comment->commentUser($comment->user_id)->under_name }}</span>さん
-            </p>
-            <p>{{ $comment->comment }}</p>
+
+        <!-- コメント表示部分 -->
+        <div class="p-3">
+          <div class="comment_container">
+            <span class="">コメント</span>
+            @foreach($post->postComments as $comment)
+            <div class="comment_area border-top">
+              <p>
+                <span>{{ $comment->commentUser($comment->user_id)->over_name }}</span>
+                <span>{{ $comment->commentUser($comment->user_id)->under_name }}</span>さん
+              </p>
+              <p>{{ $comment->comment }}</p>
+            </div>
+            @endforeach
           </div>
-          @endforeach
         </div>
       </div>
     </div>
   </div>
- <!-- コメント投稿部分 -->
+  <!-- コメント投稿部分（別枠） -->
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
         <!-- エラーメッセージの表示 -->
-        @if ($errors->has('comment'))
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->get('comment') as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+       @if ($errors->has('comment'))
+    <div class="alert alert-time">
+        <ul>
+            @foreach ($errors->get('comment') as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <p class="m-0">コメントする</p>
-        <textarea class="w-100" name="comment" form="commentRequest"></textarea>
-        <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
-        <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
-        <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}</form>
+      <form action="{{ route('comment.create') }}" method="post" id="commentRequest">
+    {{ csrf_field() }}
+    <textarea class="w-100" name="comment"></textarea>
+    <input type="hidden" name="post_id" value="{{ $post->id }}">
+    <input type="submit" class="btn btn-primary" value="投稿">
+</form>
       </div>
     </div>
   </div>
 </div>
+
 <!-- 削除確認モーダル -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -88,7 +103,7 @@
       </div>
       <div class="modal-body">
         この投稿を削除してもよろしいですか？
-        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
         <button type="button" class="btn btn-danger" onclick="document.getElementById('deleteForm').submit()">削除</button>
@@ -96,22 +111,13 @@
     </div>
   </div>
 </div>
+
 <!-- 編集モーダル -->
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
     <form action="{{ route('post.edit') }}" method="post">
       <div class="w-100">
-          <!-- エラーメッセージの表示 -->
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="modal-inner-title w-50 m-auto">
           <input type="text" name="post_title" placeholder="タイトル" class="w-100">
         </div>

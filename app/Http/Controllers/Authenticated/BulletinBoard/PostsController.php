@@ -11,6 +11,7 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use Illuminate\Validation\Rule;
+
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Auth;
 
@@ -87,27 +88,22 @@ class PostsController extends Controller
 
 
     public function postEdit(Request $request){
-
-        $request->validate(
-        [
-            'post_title' => 'required|string|max:100',
-            'post_body' => 'required|string|max:5000',
-        ],
-        [
-            'post_title.required' => 'タイトルは必ず入力してください。',
-            'post_title.string' => 'タイトルは文字列で入力してください。',
-            'post_title.max' => 'タイトルは100文字以内で入力してください。',
-            'post_body.required' => '本文は必ず入力してください。',
-            'post_body.string' => '本文は文字列で入力してください。',
-            'post_body.max' => '本文は5000文字以内で入力してください。',
-        ]
-    );
-        $post = Post::findOrFail($request->post_id);
+        $post = Post::with('user')->findOrFail($request->post_id);
 
         // 自分の投稿かどうかを確認
-        if ($post->user_id != Auth::id()) {
-            return redirect()->route('post.detail', ['id' => $request->post_id])->with('error', 'Unauthorized Access');
-        }
+    if ($post->user_id != Auth::id()) {
+        return redirect()->route('post.detail', ['id' => $request->post_id])->with('error', 'Unauthorized Access');
+    }
+
+      $request->validate([
+    'post_title' => 'required|max:100',
+    'post_body' => 'required|max:5000',
+], [
+    'post_title.required' => 'タイトルは必ず入力してください。',
+    'post_title.max' => 'タイトルは100文字以内で入力してください。',
+    'post_body.required' => '本文は必ず入力してください。。',
+    'post_body.max' => '本文は5000文字以内で入力してください。',
+]);
 
         // 投稿の更新
         $post->update([
@@ -134,7 +130,7 @@ class PostsController extends Controller
     }
 
     public function mainCategoryCreate(Request $request){
-         // バリデーションの定義
+                 // バリデーションの定義
     $request->validate(
         [
             'main_category_name' => [
@@ -151,12 +147,13 @@ class PostsController extends Controller
             'main_category_name.unique' => 'このメインカテゴリー名は既に登録されています。'
         ]
     );
+
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
 
      public function subCategoryCreate(Request $request){
-         // バリデーションの定義
+                 // バリデーションの定義
     $request->validate(
         [
             'main_category_id' => [
@@ -179,6 +176,7 @@ class PostsController extends Controller
             'sub_category_name.unique' => 'このサブカテゴリー名は既に登録されています。'
         ]
     );
+
         // dd($request);
         SubCategory::create([
             'main_category_id' => $request->main_category_id,

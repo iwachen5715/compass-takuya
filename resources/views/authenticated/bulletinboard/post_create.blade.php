@@ -43,8 +43,8 @@
     <div class="category_area mt-5 p-5">
       <div class="">
         @if ($errors->has('main_category_name'))
-          <div class="text-danger">{{ $errors->first('main_category_name') }}</div>
-        @endif
+    <div class="text-danger" style="font-size:12px">{{ $errors->first('main_category_name') }}</div>
+  @endif
         <p class="m-0">メインカテゴリー</p>
         <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
@@ -52,12 +52,9 @@
       <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
 
       <div class="mt-5">
-        @if ($errors->has('main_category_id'))
-          <div class="text-danger">{{ $errors->first('main_category_id') }}</div>
-        @endif
-        @if ($errors->has('sub_category_name'))
-          <div class="text-danger">{{ $errors->first('sub_category_name') }}</div>
-        @endif
+         @if ($errors->has('main_category_id'))
+    <div class="text-danger" style="font-size:12px">{{ $errors->first('main_category_id') }}</div>
+  @endif
         <p class="m-0">サブカテゴリー</p>
         <select class="w-100" name="main_category_id" form="subCategoryRequest">
            <option value="">------</option>
