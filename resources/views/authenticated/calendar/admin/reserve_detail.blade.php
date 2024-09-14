@@ -6,14 +6,14 @@
     <!-- 該当日時を表示 -->
     <p><span>{{ $date }}</span><span class="ml-3">{{ $part }}部</span></p>
 
-    <div class="h-75 border">
-      <table class="table table-striped">
+   <div class="h-75 border">
+    <table class="table table-striped">
         <thead>
-          <tr class="text-center">
-            <th class="w-25">ID</th>
-            <th class="w-25">名前</th>
-            <th class="w-25">場所</th>
-          </tr>
+            <tr class="text-center">
+                <th class="w-25">ID</th>
+                <th class="w-25">名前</th>
+                <th class="w-25">場所</th>
+            </tr>
         </thead>
         <tbody>
         @if(isset($reservations))
@@ -32,8 +32,6 @@
             </tr>
         @endif
         </tbody>
-      </table>
-    </div>
-  </div>
+    </table>
 </div>
 @endsection

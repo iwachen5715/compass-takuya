@@ -33,6 +33,18 @@ li {
 
 .w-100 {
   /* background-color: #ecf1f5; */
+
+}
+
+.vh-100 {
+  /* background-color: #ecf1f5; */
+
+}
+
+.w-25 {
+  /* background-color: #ecf1f5; */
+  /* border-radius: 10px; */
+
 }
 
 /* サイドバー */
@@ -111,7 +123,14 @@ li {
 .text-decoration-none {
   display: flex;
   flex-flow: column;
+
 }
+
+.text-center {
+  font-size: large;
+  border-style: none;
+}
+
 
 .part-info {
   display: flex;
@@ -422,4 +441,64 @@ li {
   display: -ms-flexbox !important;
   display: flex !important;
   justify-content: flex-end;
+}
+
+
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-modal-btn a.js-modal-close {
+  background-color: #007bff;
+  /* 青色 */
+  color: #fff;
+  text-decoration: none;
+}
+
+.edit-modal-btn a.js-modal-close:hover {
+  background-color: #0056b3;
+  /* 青色のダークバージョン */
+}
+
+.edit-modal-btn input[type="submit"] {
+  margin-left: 40px;
+  /* ボタン間の間隔 */
+}
+
+.edit-modal-btn {
+  margin-top: 15px;
+  /* ボタンの上下間隔 */
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+/* ヘッダーの背景色を濃い青に */
+.table thead th {
+  background-color: #20bcd5;
+  /* 濃い青 */
+  color: white;
+}
+
+/* 行の背景色を交互に変える */
+.table tbody tr:nth-child(odd) {
+  background-color: #17a2b866;
+  /* 白水色 */
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+  /* 白 */
 }
