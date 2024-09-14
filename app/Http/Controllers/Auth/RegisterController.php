@@ -57,37 +57,44 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(StoreUserRequest $request)
-    {
-        DB::beginTransaction();
-        try{
-            $old_year = $request->old_year;
-            $old_month = $request->old_month;
-            $old_day = $request->old_day;
-            $data = $old_year . '-' . $old_month . '-' . $old_day;
-            $birth_day = date('Y-m-d', strtotime($data));
-            $subjects = $request->subject;
+  public function registerPost(StoreUserRequest $request)
+{
+    DB::beginTransaction();
+    try {
+        $old_year = $request->old_year;
+        $old_month = $request->old_month;
+        $old_day = $request->old_day;
 
-            $request->merge(['birth_day' => $birth_day]);
-
-            $user_get = User::create([
-                'over_name' => $request->over_name,
-                'under_name' => $request->under_name,
-                'over_name_kana' => $request->over_name_kana,
-                'under_name_kana' => $request->under_name_kana,
-                'mail_address' => $request->mail_address,
-                'sex' => $request->sex,
-                'birth_day' => $birth_day,
-                'role' => $request->role,
-                'password' => bcrypt($request->password)
-            ]);
-            $user = User::findOrFail($user_get->id);
-            $user->subjects()->attach($subjects);
-            DB::commit();
-            return view('auth.login.login');
-        }catch(\Exception $e){
-            DB::rollback();
-            return redirect()->route('loginView');
+        // 生年月日を生成するための検証
+        if (!checkdate($old_month, $old_day, $old_year)) {
+            return redirect()->back()->withErrors(['old_day' => '正しい日付を入力してください。']);
         }
+
+        $birth_day = sprintf('%04d-%02d-%02d', $old_year, $old_month, $old_day);
+        $subjects = $request->subject;
+
+        $request->merge(['birth_day' => $birth_day]);
+
+        $user_get = User::create([
+            'over_name' => $request->over_name,
+            'under_name' => $request->under_name,
+            'over_name_kana' => $request->over_name_kana,
+            'under_name_kana' => $request->under_name_kana,
+            'mail_address' => $request->mail_address,
+            'sex' => $request->sex,
+            'birth_day' => $birth_day,
+            'role' => $request->role,
+            'password' => bcrypt($request->password)
+        ]);
+
+        $user = User::findOrFail($user_get->id);
+        $user->subjects()->attach($subjects);
+        DB::commit();
+
+        return view('auth.login.login');
+    } catch (\Exception $e) {
+        DB::rollback();
+        return redirect()->route('loginView')->withErrors(['error' => '登録中にエラーが発生しました。']);
     }
+}
 }
