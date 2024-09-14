@@ -94,6 +94,7 @@ class RegisterController extends Controller
         return view('auth.login.login');
     } catch (\Exception $e) {
         DB::rollback();
+
         return redirect()->route('loginView')->withErrors(['error' => '登録中にエラーが発生しました。']);
     }
 }
