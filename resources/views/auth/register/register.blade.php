@@ -88,7 +88,7 @@
     <div class="text-danger" style="font-size:12px">{{ $errors->first('old_year') ?: ($errors->first('old_month') ?: $errors->first('old_day')) }}</div>
   @endif
   <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
-  <select class="old_year" name="old_year">
+  <select class="old_year" name="old_year" style="border: none; border-bottom: 1px solid #027bff;">>
     <option value="none">-----</option>
      @for ($year = 1985; $year <= 2010; $year++)
     <option value="{{ $year }}" {{ old('old_year') == $year ? 'selected' : '' }}>{{ $year }}</option>
@@ -96,14 +96,14 @@
 
   </select>
   <label style="font-size:13px">年</label>
-  <select class="old_month" name="old_month">
+  <select class="old_month" name="old_month" style="border: none; border-bottom: 1px solid #027bff;">>
     <option value="none">-----</option>
     @for ($month = 1; $month <= 12; $month++)
       <option value="{{ sprintf('%02d', $month) }}" {{ old('old_month') == sprintf('%02d', $month) ? 'selected' : '' }}>{{ $month }}</option>
     @endfor
   </select>
   <label style="font-size:13px">月</label>
-  <select class="old_day" name="old_day">
+  <select class="old_day" name="old_day" style="border: none; border-bottom: 1px solid #027bff;">>
     <option value="none">-----</option>
     @for ($day = 1; $day <= 31; $day++)
       <option value="{{ sprintf('%02d', $day) }}" {{ old('old_day') == sprintf('%02d', $day) ? 'selected' : '' }}>{{ $day }}</option>

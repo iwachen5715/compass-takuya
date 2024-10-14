@@ -75,7 +75,10 @@ li {
 
 }
 
-.top-Icon {}
+.top_area {
+  margin-top: 15px;
+  margin-left: 15px;
+}
 
 /* サイドバー */
 .sidebar {
@@ -547,12 +550,6 @@ li {
 
 /* ユーザー検索 */
 .reserve_users_area {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* 子要素を均等に配置 */
-  gap: 10px;
-  /* 要素間の隙間 */
   width: 100%;
   /* 親幅に合わせる */
   overflow: scroll;
@@ -564,6 +561,7 @@ li {
   justify-content: flex-start;
   /* 左寄せにする */
   margin-left: 5px;
+  height: 100%;
 
 
 
@@ -591,7 +589,7 @@ li {
   background-color: #fff;
   width: calc(25% - 10px);
   /* 4列表示にするための幅。間隔調整 */
-  margin: 5px;
+  margin: 10px;
   box-sizing: border-box;
 
 }
@@ -963,7 +961,7 @@ li {
 }
 
 /* open クラスがついた場合は上向き矢印に */
-.open .arrow {
+.arrow.arrow-up {
   transform: rotate(-135deg);
 }
 
@@ -977,12 +975,16 @@ li {
 }
 
 .register-confirm {
-  /* margin-bottom: 25px; */
+  margin-top: 0;
 }
 
 .top-list {
-  /* margin-bottom: 30px; */
+  align-items: center;
 
+}
+
+top-list label {
+  margin-bottom: 0;
 }
 
 /* 下矢印 */
@@ -1009,10 +1011,25 @@ li {
   display: inline-block;
 }
 
-.position-relative {
-  margin-top: 15px;
-  margin-left: 15px;
+.subject_edit_btn::after {
+  content: "";
+  display: inline-block;
+  width: .7em;
+  height: .7em;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  transform: rotate(45deg);
+  margin-left: 0.5em;
+  margin-bottom: 0.1em;
+  transition: .3s;
 }
+
+.subject_edit_btn.is-open::after {
+  transform: rotate(-135deg);
+  transition: .3s;
+}
+
+
 
 /* アコーディオン全体 */
 .accordion {

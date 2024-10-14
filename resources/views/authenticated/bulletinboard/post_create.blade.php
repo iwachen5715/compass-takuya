@@ -62,6 +62,10 @@
             <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
           @endforeach
         </select>
+
+        @if ($errors->has('sub_category_name'))
+        <div class="text-danger" style="font-size:12px">{{ $errors->first('sub_category_name') }}</div>
+  @endif
         <input type="text" class="w-100 mt-3" name="sub_category_name" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
       </div>

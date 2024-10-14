@@ -93,7 +93,7 @@
     <!-- 並び替え選択の入力欄 -->
     <div class="mb-3">
       <select name="updown" form="userSearchRequest" class="form-text"
-              style="border-radius: 5px; border: none; background-color:#d3d3d39c; padding: 8px; font-size: 13px;">
+              style="border-radius: 5px; border: none; background-color:#E0E2E4; padding: 8px; font-size: 13px;">
         <option value="ASC">昇順</option>
         <option value="DESC">降順</option>
       </select>
@@ -120,7 +120,7 @@
     <div class="mb-3" style="font-size: 13px;">
       <label>権限</label>
       <select name="role" form="userSearchRequest" class="form-control"
-              style="border-radius: 5px; border: none; background-color: #DDDFE0; padding: 8px; font-size: 13px;">
+              style="border-radius: 5px; border: none; background-color: #E0E2E4; padding: 8px; font-size: 13px;">
         <option selected disabled>----</option>
         <option value="1">教師(国語)</option>
         <option value="2">教師(数学)</option>

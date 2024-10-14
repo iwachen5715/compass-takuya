@@ -1,12 +1,17 @@
 $(function () {
+  // 検索条件のトグル
   $('.search_conditions').click(function () {
     $('.search_conditions_inner').slideToggle();
+    $(this).toggleClass('is-open'); // クラスを切り替え
   });
 
+  // 教科編集ボタンのトグル
   $('.subject_edit_btn').click(function () {
     $('.subject_inner').slideToggle();
+    $(this).toggleClass('is-open'); // クラスを切り替え
   });
 });
+
 
 // document.addEventListener('DOMContentLoaded', function () {
 //   const editButton = document.querySelector('.subject_edit_btn');
