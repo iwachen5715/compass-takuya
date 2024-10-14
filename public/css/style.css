@@ -9,6 +9,7 @@
 /* body */
 .all_content {
   background: #ECF1F6;
+  min-height: 100%;
 }
 
 ul,
@@ -25,44 +26,89 @@ li {
   background-color: #fff;
 }
 
+.login-page {
+  background-color: #ecf1f5;
+}
+
 
 
 /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 /* border-radius: 20px; */
 
 
-.w-100 {
-  /* background-color: #ecf1f5; */
+/* .w-100 {
+  background-color: #ecf1f5;
+
+} */
+
+.login-key {
+  background-color: #fff;
 
 }
 
-.vh-100 {
-  /* background-color: #ecf1f5; */
+.login-top {
+  border: 1px solid #dee2e6 !important;
+  border-radius: 15px;
 
 }
+
+
+.login-format {
+  border-radius: 15px;
+  margin-top: 120px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 330px;
+}
+
+.Logo-design {
+  height: 60px;
+}
+
+.text-bottom {
+  text-align: center !important;
+}
+
 
 .w-25 {
-  /* background-color: #ecf1f5; */
-  /* border-radius: 10px; */
+  /* background-color: #fff; */
+
 
 }
+
+.top-Icon {}
 
 /* サイドバー */
 .sidebar {
-  width: 180px;
-  min-height: 500vh;
+  width: 200px;
+  min-height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
+
+
+
 }
 
 .main-container {
   width: 100%;
 }
 
+.top-border {
+  background-color: #ecf1f5;
+}
 
 
-.sidebar p a {
+
+.sidebar p {
   color: #FFF;
+  margin-left: 7px;
+  margin-top: 7px;
+}
+
+.sidebar a {
+  color: #FFF;
+  margin-left: 7px;
+  margin-top: 7px;
+
 }
 
 /* トップページ */
@@ -71,24 +117,25 @@ li {
   background: #FFF;
   /* 立体感を出すためのシャドウ */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: 180px;
 }
 
 
 /* スクール予約関連 */
 .day-blank {
-  background: #6c757d7a;
+  background: #ddd;
 }
 
-.day-sat {
+/* .day-sat {
   color: #212529;
-}
+} */
 
-.day-sun {
+/* .day-sun {
   color: #212529;
-}
+} */
 
 .past-day {
-  background: #ddd;
+  background: #eee;
   overflow: hidden;
 }
 
@@ -104,9 +151,9 @@ li {
   font-size: 12px;
 }
 
-.adjust-table {
+/* .adjust-table {
   width: 70% !important;
-}
+} */
 
 .adjust-table td {
   padding: 0 !important;
@@ -129,6 +176,55 @@ li {
 .text-center {
   font-size: large;
   border-style: none;
+  /* background-color: #03AAD2; */
+  ;
+
+}
+
+.text-format {
+  font-size: large;
+  border-style: none;
+  text-align: center !important;
+  margin-bottom: 25px;
+  padding: 15px;
+  margin-top: 120px;
+
+}
+
+.text-table {
+  font-size: large;
+  border-style: none;
+  margin-bottom: 25px;
+  padding: 15px;
+}
+
+.dli-chevron-up {
+  display: inline-block;
+  vertical-align: middle;
+  color: #333;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid currentColor;
+  border-left: 0;
+  border-bottom: 0;
+  box-sizing: border-box;
+  transform: translateY(25%) rotate(-45deg);
+}
+
+
+.dli-chevron-down {
+  display: inline-block;
+  vertical-align: middle;
+  color: #333;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid currentColor;
+  border-left: 0;
+  border-bottom: 0;
+  box-sizing: border-box;
+  transform: translateY(-25%) rotate(135deg);
 }
 
 
@@ -151,6 +247,11 @@ li {
 
 
 
+.text-search {
+  font-size: 15px;
+  margin-top: 15px;
+
+}
 
 /* モーダル */
 .modal {
@@ -197,6 +298,7 @@ li {
 
 .detail_container {
   background: #FFF;
+  border-radius: 10px;
 }
 
 .post_area {
@@ -222,6 +324,100 @@ li {
   font-size: 12px;
   color: red;
 }
+
+/* 投稿ボタン */
+.custom-btn {
+  display: inline-block;
+  padding: 5px 110px;
+  background-color: #06aef3;
+  /* 水色 */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.custom-btn:hover {
+  background-color: #0599d6;
+  color: white;
+  text-decoration: none !important;
+  /* hover時の色を少し濃く */
+}
+
+.search-container {
+  display: flex;
+  /* 入力フォームとボタンを横並びに */
+}
+
+.search-container input[type="text"] {
+  background-color: transparent;
+  /* 背景色を透明に */
+  border: 1px solid #ccc;
+  /* 枠線 */
+  border-radius: 5px 0 0 5px;
+  /* 左上と左下のみ丸みを帯びる */
+  outline: none;
+  /* フォーカス時の青枠を消す */
+  margin-top: 15px;
+}
+
+.search-container input[type="submit"] {
+  background-color: #06aef3;
+  /* ボタンの水色 */
+  border: none;
+  padding: 5px 20px;
+  border-radius: 0 10px 10px 0;
+  /* 右上と右下の角を丸く */
+  color: white;
+  /* ボタンの文字色 */
+  cursor: pointer;
+
+  margin-top: 15px;
+}
+
+.search-container input[type="submit"]:hover {
+  background-color: #0599d6;
+  /* ホバー時の少し濃い色 */
+}
+
+.button-container {
+  display: flex;
+  /* ボタンを横並びにする */
+}
+
+.category_btn {
+  border: none;
+  padding: 5px 15px;
+  border-radius: 0 10px 10px 0;
+  /* 角を丸く */
+  color: white;
+  /* ボタンの文字色 */
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.like_posts_btn {
+  background-color: #f828907d;
+  /* ピンク色 */
+  border-radius: 10px;
+  /* 角を丸く */
+}
+
+.my_posts_btn {
+  background-color: #ffd700;
+  /* 黄色 */
+  border-radius: 10px;
+  /* 角を丸く */
+  width: 65%;
+}
+
+.category_btn:hover {
+  opacity: 0.9;
+  /* ホバー時に少し透明にして変化をつける */
+}
+
+
+
 
 /* 掲示板 詳細画面 */
 .contributor {
@@ -261,6 +457,7 @@ li {
 /* 掲示板 コメント */
 .comment_container {
   background: #FFF;
+  border-radius: 10px;
 }
 
 .comment_area p,
@@ -280,13 +477,16 @@ li {
 
 .post_status span {
   font-size: 12px;
+  margin-left: 4px;
 }
 
 .fa-comment:before {
   color: #9E9E9E;
 }
 
-.fa-heart.like_btn::before {}
+.fa-heart.like_btn::before {
+  color: #9E9E9E;
+}
 
 .text-danger {
   white-space: nowrap;
@@ -307,14 +507,19 @@ li {
   color: #FFF;
 }
 
-.category_btn {
+
+
+
+
+
+/* .category_btn {
   font-size: 12px;
   border-radius: 5px;
   padding: 0 5px;
   border: none;
   background: #999;
   color: #FFF;
-}
+} */
 
 .sub_category_btn {
   font-size: 12px;
@@ -335,6 +540,11 @@ li {
   margin-top: 15px;
 }
 
+
+.sub_category_link {
+  color: black;
+}
+
 /* ユーザー検索 */
 .reserve_users_area {
   display: flex;
@@ -346,14 +556,22 @@ li {
   width: 100%;
   /* 親幅に合わせる */
   overflow: scroll;
-  padding: 10px;
+  padding: 30px;
   background: #ecf1f5;
   border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* 左寄せにする */
+  margin-left: 5px;
+
+
 
 }
 
 .name-Icon {
   color: #999;
+  margin-left: 20px;
 }
 
 .reserve_users_area span {
@@ -363,31 +581,44 @@ li {
 .one_person {
   flex: 1 1 calc(25% - 20px);
   /* 横4列にするための幅計算 */
-  max-width: calc(25% - 20px);
+  /* max-width: calc(25% - 20px); */
   /* 幅の最大値を指定 */
   height: 200px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   /* 縦方向の隙間 */
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: #fff;
+  width: calc(25% - 10px);
+  /* 4列表示にするための幅。間隔調整 */
+  margin: 5px;
+  box-sizing: border-box;
 
 }
 
+.empty_cell {
+  width: calc(25% - 10px);
+  /* 同じく4列に合わせた幅 */
+  margin: 5px;
+}
+
+
+
 .search_conditions span {
   cursor: pointer;
+  font-size: 14px;
 }
 
 .search_conditions_inner {
   display: none;
-  background: #FFF;
+  margin-left: 42px;
 }
 
 .subject_edit_btn {
   font-size: 16px;
   color: #0ec2de;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .subject_inner {
@@ -453,25 +684,36 @@ li {
 }
 
 .edit-modal-btn a.js-modal-close {
-  background-color: #007bff;
+  /* background-color: #007bff; */
   /* 青色 */
   color: #fff;
   text-decoration: none;
+  margin-right: 100px;
+  height: 30%;
+  margin-top: 15px;
+
 }
 
-.edit-modal-btn a.js-modal-close:hover {
-  background-color: #0056b3;
-  /* 青色のダークバージョン */
-}
+
+
 
 .edit-modal-btn input[type="submit"] {
   margin-left: 40px;
   /* ボタン間の間隔 */
 }
 
+
+
 .edit-modal-btn {
   margin-top: 15px;
   /* ボタンの上下間隔 */
+}
+
+.delete-modal-btn a.js-modal-close {
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 100px;
 }
 
 .btn {
@@ -487,18 +729,344 @@ li {
 
 /* ヘッダーの背景色を濃い青に */
 .table thead th {
-  background-color: #20bcd5;
+  /* background-color: #FFF; */
   /* 濃い青 */
-  color: white;
+  /* color: #fff; */
 }
 
-/* 行の背景色を交互に変える */
-.table tbody tr:nth-child(odd) {
-  background-color: #17a2b866;
-  /* 白水色 */
+/* 偶数行に薄水色 */
+.table-striped tbody tr:nth-child(even) {
+  background-color: #e0f7fa;
+  /* 薄い水色 */
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: #ffffff;
+/* 奇数行に白色 */
+.table-striped tbody tr:nth-child(odd) {
+  background-color: #fff;
   /* 白 */
+}
+
+
+
+.text-name {
+  background-color: #05aad2;
+}
+
+.register-form {
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+.post-author {
+  margin-right: 120px;
+}
+
+.top-view {
+  background-color: #ecf1f5;
+}
+
+
+
+.sub_category_item {
+  position: relative;
+  padding-bottom: 5px;
+  /* 下線との間隔 */
+  margin-top: 15px;
+}
+
+.sub_category_link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* 下線の長さを指定 */
+  height: 1px;
+  /* 下線の太さ */
+  background-color: #9E9EA1;
+  /* 下線の色 */
+}
+
+.sub_category_link:hover::after {
+  background-color: blue;
+  /* ホバー時に色を変更する場合 */
+}
+
+
+.sub_category_label {
+  display: inline-block;
+  background-color: #03AAD2;
+  /* 水色 */
+  color: white;
+  border-radius: 10px;
+  /* 丸くする */
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+
+/* .like_counts {
+  margin-left: 3px;
+} */
+
+.part-info {
+  font-size: 12px;
+}
+
+.day {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.day p {
+  /* margin-top: 10px; */
+
+}
+
+.part-time {
+  font-size: 12px;
+}
+
+.close-trigger {
+  color: red;
+  background-color: #dc3545;
+}
+
+.exit-btn {
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.week-day {
+  font-size: 12px;
+}
+
+/* 土曜日の青 */
+.week-end {
+  color: #0000FF;
+}
+
+/* 日曜日の赤 */
+.week-first {
+  color: red;
+}
+
+.form-text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-clip: padding-box;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  margin-left: 35px;
+}
+
+.text-cell {
+  background-color: #19a9d7;
+  color: #FFF;
+}
+
+/* .title-name {
+  color: #212529;
+} */
+
+.font-form {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.day-sat {
+  color: #0000ff;
+}
+
+.day-sun {
+  color: #f00;
+}
+
+.post-name {
+  color: #212529;
+}
+
+.post-flex {
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+}
+
+.search-title {
+  text-align: center !important;
+
+}
+
+.condition-add {
+  margin-left: 32px;
+  margin-top: 20px;
+}
+
+/* カテゴリーヘッダーのスタイル */
+.category-header {
+  position: relative;
+  /* 矢印を相対位置に配置 */
+}
+
+/* 初期状態の矢印描画（下向き）  */
+.category-header:after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #333;
+  /* 矢印の左辺 */
+  border-bottom: 2px solid #333;
+  /* 矢印の下辺  */
+  transform: rotate(-45deg);
+  /* 初期は下向き  */
+  position: absolute;
+  right: 10px;
+  /* 矢印の位置調整  */
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  /* 垂直中央に配置し、回転させる */
+}
+
+/* 矢印が上向きになるスタイル（クリックで適用されるクラス） */
+.open .category-header:after {
+  transform: translateY(-50%) rotate(135deg);
+  /* 上向きに変更 */
+}
+
+.calendar-type {}
+
+/* 経過した土曜日の色を青に */
+.past-day.week-end {
+  color: blue;
+}
+
+/* 経過した日曜日の色を赤に */
+.past-day.week-first {
+  color: red;
+}
+
+.arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #002D62;
+  border-bottom: 2px solid #002D62;
+  transform: rotate(45deg);
+  /* 初期は下向き */
+  transition: transform 0.3s;
+}
+
+/* open クラスがついた場合は上向き矢印に */
+.open .arrow {
+  transform: rotate(-135deg);
+}
+
+/* サブカテゴリーの矢印も同じ */
+.main_categories .arrow {
+  margin-left: 10px;
+}
+
+.main_categories.open .arrow {
+  transform: rotate(-135deg);
+}
+
+.register-confirm {
+  /* margin-bottom: 25px; */
+}
+
+.top-list {
+  /* margin-bottom: 30px; */
+
+}
+
+/* 下矢印 */
+.dli-chevron-down {
+  display: inline-block;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  padding: 4px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transition: transform 0.3s;
+}
+
+/* 上矢印 */
+.dli-chevron-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+/* アコーディオンボタンのスタイル */
+.subject_edit_btn {
+  cursor: pointer;
+  /* font-weight: bold; */
+  display: inline-block;
+}
+
+.position-relative {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+/* アコーディオン全体 */
+.accordion {
+  width: 100%;
+  padding: 10px;
+}
+
+.accordion input {
+  display: none;
+  /* チェックボックスを隠す */
+}
+
+/* タイトル部分（クリックできる部分） */
+.accordion label {
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* 開いたときのコンテンツ部分 */
+.accordion-content {
+  display: none;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+/* チェックが入ったときにコンテンツを表示 */
+.accordion input[type="checkbox"]:checked~.accordion-content {
+  display: block;
+}
+
+/* 閉じた状態の矢印（右向き） */
+.accordion label:after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform 0.3s ease;
+  /* アニメーションで回転 */
+}
+
+/* 開いた状態の矢印（下向きに回転） */
+.accordion input[type="checkbox"]:checked+label:after {
+  transform: translateY(-50%) rotate(135deg);
+  /* 135度回転して下向きに */
 }

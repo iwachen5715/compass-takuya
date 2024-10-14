@@ -15,12 +15,11 @@
 <body>
   <form action="{{ route('registerPost') }}" method="POST">
     @csrf
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-      <div class="w-25 vh-75 border p-3">
+    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;  background-color: #ecf1f5;">
+      <div class="w-25 vh-75 border p-3 register-form">
 
 
 <!-- エラーメッセージの表示 -->
-
 
 <div class="register_form">
   <div class="d-flex mt-3" style="justify-content:space-between">
@@ -69,7 +68,7 @@
     @endif
     <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
     <div class="border-bottom border-primary">
-      <input type="email" class="w-100 border-0 mail_address" name="mail_address" value="{{ old('mail_address') }}">
+      <input type="email" class="w-100 border-0 mail_address login-key" name="mail_address" value="{{ old('mail_address') }}">
     </div>
   </div>
 </div>
@@ -144,7 +143,7 @@
   @endif
   <label class="d-block m-0" style="font-size:13px">パスワード</label>
   <div class="border-bottom border-primary">
-    <input type="password" class="border-0 w-100 password" name="password">
+    <input type="password" class="border-0 w-100 password login-key" name="password">
   </div>
 </div>
 <div class="mt-3">

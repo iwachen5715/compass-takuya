@@ -8,20 +8,28 @@
     <div class="m-3 detail_container">
 
       <div class="p-3">
-         @if ($errors->has('post_title') || $errors->has('post_body'))
-    <div class="alert alert-time">
-        <ul>
-            @if ($errors->has('post_title'))
-                <li>{{ $errors->first('post_title') }}</li>
-            @endif
-            @if ($errors->has('post_body'))
-                <li>{{ $errors->first('post_body') }}</li>
-            @endif
-        </ul>
-    </div>
-@endif
+        <!-- エラーメッセージ表示 -->
+        @if ($errors->has('post_title') || $errors->has('post_body'))
+          <div class="alert alert-time">
+              <ul>
+                  @if ($errors->has('post_title'))
+                      <li>{{ $errors->first('post_title') }}</li>
+                  @endif
+                  @if ($errors->has('post_body'))
+                      <li>{{ $errors->first('post_body') }}</li>
+                  @endif
+              </ul>
+          </div>
+        @endif
+
         <div class="detail_inner_head">
           <div>
+            <!-- サブカテゴリー表示部分 -->
+            <div class="sub_category_display">
+              @foreach($post->subCategories as $subCategory)
+                <span class="sub_category_label">{{ $subCategory->sub_category }}</span>
+              @endforeach
+            </div>
           </div>
           <div>
             @if(Auth::id() == $post->user_id)
@@ -36,14 +44,17 @@
             @endif
           </div>
         </div>
-        <div class="contributor d-flex">
-          <p>
+
+        <!-- 投稿者情報 -->
+        <div class="contributor">
+          <p class="font-form">
             <span>{{ $post->user->over_name }}</span>
-            <span>{{ $post->user->under_name }}</span>
-            さん
+            <span>{{ $post->user->under_name }}</span>さん
           </p>
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
+
+        <!-- 投稿タイトルと内容 -->
         <div class="detsail_post_title">{{ $post->post_title }}</div>
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
 
@@ -65,27 +76,28 @@
       </div>
     </div>
   </div>
-  <!-- コメント投稿部分（別枠） -->
+
+  <!-- コメント投稿部分 -->
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
         <!-- エラーメッセージの表示 -->
-       @if ($errors->has('comment'))
-    <div class="alert alert-time">
-        <ul>
-            @foreach ($errors->get('comment') as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+        @if ($errors->has('comment'))
+          <div class="alert alert-time">
+              <ul>
+                  @foreach ($errors->get('comment') as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
         <p class="m-0">コメントする</p>
-      <form action="{{ route('comment.create') }}" method="post" id="commentRequest">
-    {{ csrf_field() }}
-    <textarea class="w-100" name="comment"></textarea>
-    <input type="hidden" name="post_id" value="{{ $post->id }}">
-    <input type="submit" class="btn btn-primary" value="投稿">
-</form>
+        <form action="{{ route('comment.create') }}" method="post" id="commentRequest">
+          {{ csrf_field() }}
+          <textarea class="w-100" name="comment"></textarea>
+          <input type="hidden" name="post_id" value="{{ $post->id }}">
+          <input type="submit" class="btn btn-primary" value="投稿">
+        </form>
       </div>
     </div>
   </div>
@@ -124,8 +136,8 @@
         <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
           <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
         </div>
-        <div class="w-50 m-auto edit-modal-btn d-flex">
-          <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
+        <div class="w-50 m-auto edit-modal-btn exit-btn">
+          <a class="js-modal-close btn btn-danger d-inline-block " href="">閉じる</a>
           <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
           <input type="submit" class="btn btn-primary d-block" value="編集">
         </div>
@@ -134,4 +146,18 @@
     </form>
   </div>
 </div>
+
 @endsection
+
+<!-- CSSスタイルの追加 -->
+<style>
+  .sub_category_label {
+    display: inline-block;
+    background-color: #add8e6; /* 水色 */
+    color: white;
+    border-radius: 50px; /* 丸いバッジ */
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+</style>

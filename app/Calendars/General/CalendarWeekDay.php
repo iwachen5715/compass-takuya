@@ -13,12 +13,28 @@ class CalendarWeekDay{
   }
 
   function getClassName(){
-    return "day-" . strtolower($this->carbon->format("D"));
-  }
+    // 通常の曜日クラスに過去日付のクラスを追加
+    return "day-" . strtolower($this->carbon->format("D")) . " " . $this->pastClassName();
+}
 
-  function pastClassName(){
-    return;
-  }
+ function pastClassName(){
+    // 現在の日付
+    $today = Carbon::now()->format('Y-m-d');
+
+    // 過去の日付かどうかを確認
+    if($this->carbon->format('Y-m-d') < $today) {
+        // 曜日を判定してクラスを追加
+        if($this->carbon->isSaturday()){
+            return 'past-day week-end';  // 土曜日の場合
+        } elseif ($this->carbon->isSunday()){
+            return 'past-day week-first';  // 日曜日の場合
+        } else {
+            return 'past-day';  // 平日の場合
+        }
+    }
+    return '';  // 過去でなければ空文字を返す
+}
+
 
   /**
    * @return
