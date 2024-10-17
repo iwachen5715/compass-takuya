@@ -5,9 +5,9 @@
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
       @if($errors->has('post_category_id'))
-        <div class="text-danger">{{ $errors->first('post_category_id') }}</div>
+        <div class="text-danger font-small">{{ $errors->first('post_category_id') }}</div>
       @endif
-      <p class="mb-0">カテゴリー</p>
+      <p class="mb-0 font-small">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
          <option value="">------</option>
         @foreach($main_categories as $main_category)
@@ -21,19 +21,19 @@
     </div>
     <div class="mt-3">
       @if($errors->has('post_title'))
-        <div class="text-danger">{{ $errors->first('post_title') }}</div>
+        <div class="text-danger font-small">{{ $errors->first('post_title') }}</div>
       @endif
-      <p class="mb-0">タイトル</p>
+      <p class="mb-0 font-small">タイトル</p>
       <input type="text" class="w-100" form="postCreate" name="post_title" value="{{ old('post_title') }}">
     </div>
     <div class="mt-3">
       @if($errors->has('post_body'))
-        <div class="text-danger">{{ $errors->first('post_body') }}</div>
+        <div class="text-danger font-small">{{ $errors->first('post_body') }}</div>
       @endif
-      <p class="mb-0">投稿内容</p>
+      <p class="mb-0 font-small">投稿内容</p>
       <textarea class="w-100" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
     </div>
-    <div class="mt-3 text-right">
+    <div class="mt-3 text-right ">
       <input type="submit" class="btn btn-primary" value="投稿" form="postCreate">
     </div>
     <form action="{{ route('post.create') }}" method="post" id="postCreate">{{ csrf_field() }}</form>
@@ -43,9 +43,9 @@
     <div class="category_area mt-5 p-5">
       <div class="">
         @if ($errors->has('main_category_name'))
-    <div class="text-danger" style="font-size:12px">{{ $errors->first('main_category_name') }}</div>
+    <div class="text-danger" style="font-size:13px">{{ $errors->first('main_category_name') }}</div>
   @endif
-        <p class="m-0">メインカテゴリー</p>
+        <p class="m-0 font-small">メインカテゴリー</p>
         <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
       </div>
@@ -53,9 +53,9 @@
 
       <div class="mt-5">
          @if ($errors->has('main_category_id'))
-    <div class="text-danger" style="font-size:12px">{{ $errors->first('main_category_id') }}</div>
+    <div class="text-danger font-small" style="font-size:13px">{{ $errors->first('main_category_id') }}</div>
   @endif
-        <p class="m-0">サブカテゴリー</p>
+        <p class="m-0 font-small">サブカテゴリー</p>
         <select class="w-100" name="main_category_id" form="subCategoryRequest">
            <option value="">------</option>
           @foreach($main_categories as $main_category)
@@ -64,7 +64,7 @@
         </select>
 
         @if ($errors->has('sub_category_name'))
-        <div class="text-danger" style="font-size:12px">{{ $errors->first('sub_category_name') }}</div>
+        <div class="text-danger font-small" style="font-size:13px">{{ $errors->first('sub_category_name') }}</div>
   @endif
         <input type="text" class="w-100 mt-3" name="sub_category_name" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">

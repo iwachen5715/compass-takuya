@@ -140,6 +140,7 @@ li {
 .past-day {
   background: #eee;
   overflow: hidden;
+  width: 100px;
 }
 
 .calendar-td {
@@ -493,6 +494,8 @@ li {
 
 .text-danger {
   white-space: nowrap;
+
+
 }
 
 /* 掲示板　カテゴリー */
@@ -753,6 +756,7 @@ li {
 .register-form {
   border-radius: 10px;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+  line-height: initial;
 
 }
 
@@ -1086,4 +1090,18 @@ top-list label {
 .accordion input[type="checkbox"]:checked+label:after {
   transform: translateY(-50%) rotate(135deg);
   /* 135度回転して下向きに */
+}
+
+.font-small {
+  font-size: 13px;
+}
+
+.error-message {
+  height: 16px;
+  /* エラーメッセージが表示される高さを固定 */
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: red;
+
 }
